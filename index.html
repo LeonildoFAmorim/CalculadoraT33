@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+    <link rel="stylesheet" href="css/estilo.css">
+</head>
+
+<body>
+    <h1 class="texto fonte-20">Calcular MMC ou MDC: </h1>
+    <div class="texto fonte-15">
+        <li>MMC: Mínimo Múltiplo Comum é o menor número, também inteiro, que é múltiplo de todos esses números ao mesmo tempo. Ex.: 3, 6 e 9 = 18;</li>
+        <li>MDC: Máximo Divisor Comum é o maior número, também inteiro, que é múltiplo de todos esses números ao mesmo tempo. Ex.: 3, 6 e 9 = 3;</li>
+        <li>Zero e 1 não serão considerados para o cálculo de MMC ou MDC (ver definição);</li>
+        <li>Serão considerados apenas números inteiros. Números negativos serão considerados positivos (ver definição).</li>
+        <li>Clique no primeiro número desejado tecle Enter;</li>
+        <li>Tecle no segundo número desejado tecle Enter;</li>
+        <li>Pode ser inserido vários números para o cálculo repetindo o processo acima;</li>
+        <li>Uma vez acionada as funções MMC ou MDC, o teclado ficará indisponível, permitindo apenas a alternância entre os botões MMC, MDC e Primo;</li>
+        <li>Caso queira calcular outros valores, limpe a tela;</li>
+    </div>
+    <div>
+        <h1 class="texto fonte-20">Verificar se um número é primo:</h1>
+    </div>
+    <div class="texto fonte-15">Tecle o número e depois tecle Primo.</div>
+    <div class="texto fonte-15">Números primos são inteiros maiores que 1 sem divisores positivos além de 1 e de si mesmo. Números negativos não são primos.</div>
+    </h1>
+
+    <div class="calculadora">
+        <div class="calculadora-menu">
+            <button>-</button>
+            <button>+</button>
+        </div>
+        <div class="display" id="display"></div>
+        <div class="display" id="vetor"></div>
+        <table class="calculadora-corpo">
+            <tr>
+                <td onclick="calcularMMC()">MMC</td>
+                <td onclick="calcularMDC()">MDC</td>
+                <td onclick="verificaSeEhPrimo()">Primo</td>
+                <td onclick="reiniciar()">Limpa</td>
+            </tr>
+            <tr>
+                <td onclick="captarValoresDoTeclado('7')">7</td>
+                <td onclick="captarValoresDoTeclado('8')">8</td>
+                <td onclick="captarValoresDoTeclado('9')">9</td>
+                <td onclick="captarValoresDoTeclado('/')">÷</td>
+            </tr>
+            <tr>
+                <td onclick="captarValoresDoTeclado('4')">4</td>
+                <td onclick="captarValoresDoTeclado('5')">5</td>
+                <td onclick="captarValoresDoTeclado('6')">6</td>
+                <td onclick="captarValoresDoTeclado('*')">×</td>
+            </tr>
+            <tr>
+                <td onclick="captarValoresDoTeclado('1')">1</td>
+                <td onclick="captarValoresDoTeclado('2')">2</td>
+                <td onclick="captarValoresDoTeclado('3')">3</td>
+                <td onclick="captarValoresDoTeclado('-')">-</td>
+            </tr>
+            <tr>
+                <td onclick="captarValoresDoTeclado('0')" class="zero">0</td>
+                <td onclick="captarValoresDoTeclado('.')">,</td>
+                <td onclick="captarValoresDoTeclado('+')" colspan="2">+</td>
+            </tr>
+            <tr>
+                <td colspan="2" onclick="inserirNumeros()">Enter</td>
+                <td onclick="calculoAritmetico()" class="igual" colspan="2">=</td>
+            </tr>
+        </table>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
