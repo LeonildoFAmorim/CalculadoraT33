@@ -155,7 +155,6 @@ function calcularMDC() {
         }
         numerosParaMMC_MDC = numerosOriginais;
         calculoMDCExecutado = true;
-
     } else {
         (numerosParaMMC_MDC == '') ? '' : exibirMensagem(`MDC: ${mdc}`); // evitar bug caso a tecla MDC for clicada sem antes de qualquer operação
     }
