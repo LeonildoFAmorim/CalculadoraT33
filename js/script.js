@@ -53,7 +53,7 @@ function calculoAritmetico() {
         } catch (erro) {
             alert('sentença inválida!');
         }
-        (resultado != undefined) ? exibirMensagem(resultado): '';
+        (resultado != undefined) ? exibirMensagem(resultado) : '';
     }
     displayEstahVazio = false;
 }
@@ -91,19 +91,19 @@ function inserirNumeros() {
     }
 }
 // somar todos os valores de um vetor para calcular MMC
-function somarNumeros(vetor) {
-    var somaValores = 0;
+function somarNumerosDeUmVetor(vetor) {
+    var somaDosValoresDoVetor = 0;
     for (let i = 0; i < vetor.length; i++) {
-        somaValores += parseInt(vetor[i]);
+        somaDosValoresDoVetor += parseInt(vetor[i]);
     }
-    return somaValores;
+    return somaDosValoresDoVetor;
 }
 
 function calcularMMC() {
     tecladoDisponivel = false; // quando esta função for executada, apenas os botões MMC, MDC, Primo e Limpa ficarão acessíveis para o usuário (evitar bugs)
     if (calculoMMCExecutado == false) {
         if (numerosParaMMC_MDC != '') {
-            var somaDosNumeros = somarNumeros(numerosParaMMC_MDC);
+            var somaDosNumeros = somarNumerosDeUmVetor(numerosParaMMC_MDC);
             var divisor = 2;
             while (somaDosNumeros != numerosParaMMC_MDC.length) {
                 let houveDivisivel = false;
@@ -114,7 +114,7 @@ function calcularMMC() {
                     }
                 }
                 (houveDivisivel == true ? mmc *= divisor : divisor++);
-                somaDosNumeros = somarNumeros(numerosParaMMC_MDC); // atualizando a soma dos valores do vetor
+                somaDosNumeros = somarNumerosDeUmVetor(numerosParaMMC_MDC); // atualizando a soma dos valores do vetor
             }
             exibirMensagem(`MMC: ${mmc}`);
         }
