@@ -100,7 +100,6 @@ function somarNumerosDeUmVetor(vetor) {
 }
 
 function calcularMMC() {
-    tecladoDisponivel = false; // quando esta função for executada, apenas os botões MMC, MDC, Primo e Limpa ficarão acessíveis para o usuário (evitar bugs)
     if (calculoMMCExecutado == false) {
         if (numerosParaMMC_MDC != '') {
             var somaDosNumeros = somarNumerosDeUmVetor(numerosParaMMC_MDC);
@@ -117,16 +116,16 @@ function calcularMMC() {
                 somaDosNumeros = somarNumerosDeUmVetor(numerosParaMMC_MDC); // atualizando a soma dos valores do vetor
             }
             exibirMensagem(`MMC: ${mmc}`);
+            tecladoDisponivel = false; // quando esta função for executada, apenas os botões MMC, MDC, Primo e Limpa ficarão acessíveis para o usuário (evitar bugs)
         }
         numerosParaMMC_MDC = numerosOriginais;
         calculoMMCExecutado = true;
     } else {
-        exibirMensagem(`MMC: ${mmc}`);
+        (numerosParaMMC_MDC == '') ? '' : exibirMensagem(`MMC: ${mmc}`); // evitar bug caso a tecla MMC for clicada sem antes de qualquer operação
     }
 }
 
 function calcularMDC() {
-    tecladoDisponivel = false; // quando esta função for executada, apenas os botões MMC, MDC, Primo e Limpa ficarão acessíveis para o usuário (evitar bugs)
     if (calculoMDCExecutado == false) {
         if (numerosParaMMC_MDC != '') {
             var divisor = 2;
@@ -152,10 +151,12 @@ function calcularMDC() {
                 }
             }
             exibirMensagem(`MDC: ${mdc}`);
+            tecladoDisponivel = false;// quando esta função for executada, apenas os botões MMC, MDC, Primo e Limpa ficarão acessíveis para o usuário (evitar bugs)
         }
         numerosParaMMC_MDC = numerosOriginais;
         calculoMDCExecutado = true;
+
     } else {
-        exibirMensagem(`MDC: ${mdc}`);
+        (numerosParaMMC_MDC == '') ? '' : exibirMensagem(`MDC: ${mdc}`); // evitar bug caso a tecla MDC for clicada sem antes de qualquer operação
     }
 }
