@@ -5,6 +5,7 @@ let numerosParaMMC_MDC = [],
     calculoMDCExecutado = false,
     tecladoDisponivel = true,
     displayEstahVazio = true,
+    calculoPrimoExecutado = false,
     mmc = 1,
     mdc = 1;
 
@@ -42,6 +43,7 @@ function captarValoresDoTeclado(valor) {
             document.querySelector('.display').innerHTML += valor;
         }
         displayEstahVazio = true;
+        calculoPrimoExecutado = false;
     }
 }
 
@@ -53,29 +55,34 @@ function calculoAritmetico() {
         } catch (erro) {
             alert('sentença inválida!');
         }
-        (resultado != undefined) ? exibirMensagem(resultado) : '';
+        (resultado != undefined) ? exibirMensagem(resultado): '';
     }
     displayEstahVazio = false;
 }
 
 function verificaSeEhPrimo() {
-    let divisores = 0,
-        primo = '',
-        valordoDisplay = 0;
-    try {
-        valordoDisplay = parseInt(lerDados());
-    } catch (erro) {
-        alert('valor inválido!');
-    }
-    if (isNaN(valordoDisplay) == false) {
-        for (let i = 1; i <= valordoDisplay; i++) {
-            if (valordoDisplay % i == 0) {
-                divisores++;
-            }
+    if (calculoPrimoExecutado == false) {
+        let divisores = 0,
+            primo = '',
+            valordoDisplay = 0;
+        try {
+            valordoDisplay = parseInt(lerDados());
+        } catch (erro) {
+            alert('valor inválido!');
         }
-        (divisores == 2 ? primo = 'é primo' : primo = 'não é primo');
+        if (isNaN(valordoDisplay) == false) {
+            for (let i = 1; i <= valordoDisplay; i++) {
+                if (valordoDisplay % i == 0) {
+                    divisores++;
+                }
+            }
+            (divisores == 2 ? primo = 'é primo' : primo = 'não é primo');
+            exibirMensagem(valordoDisplay + " " + primo);
+            displayEstahVazio = false;
+            calculoPrimoExecutado = true;
+        }
+    } else {
         exibirMensagem(valordoDisplay + " " + primo);
-        displayEstahVazio = false;
     }
 }
 // inserir números no vetor
@@ -91,18 +98,18 @@ function inserirNumeros() {
     }
 }
 // somar todos os valores de um vetor para calcular MMC
-function somarNumerosDeUmVetor(vetor) {
-    var somaDosValoresDoVetor = 0;
+function somarNumeros(vetor) {
+    var somaValores = 0;
     for (let i = 0; i < vetor.length; i++) {
-        somaDosValoresDoVetor += parseInt(vetor[i]);
+        somaValores += parseInt(vetor[i]);
     }
-    return somaDosValoresDoVetor;
+    return somaValores;
 }
 
 function calcularMMC() {
     if (calculoMMCExecutado == false) {
         if (numerosParaMMC_MDC != '') {
-            var somaDosNumeros = somarNumerosDeUmVetor(numerosParaMMC_MDC);
+            var somaDosNumeros = somarNumeros(numerosParaMMC_MDC);
             var divisor = 2;
             while (somaDosNumeros != numerosParaMMC_MDC.length) {
                 let houveDivisivel = false;
@@ -113,16 +120,17 @@ function calcularMMC() {
                     }
                 }
                 (houveDivisivel == true ? mmc *= divisor : divisor++);
-                somaDosNumeros = somarNumerosDeUmVetor(numerosParaMMC_MDC); // atualizando a soma dos valores do vetor
+                somaDosNumeros = somarNumeros(numerosParaMMC_MDC); // atualizando a soma dos valores do vetor
             }
+            calculoMMCExecutado = true;
             exibirMensagem(`MMC: ${mmc}`);
-            tecladoDisponivel = false; // quando esta função for executada, apenas os botões MMC, MDC, Primo e Limpa ficarão acessíveis para o usuário (evitar bugs)
+            tecladoDisponivel = false;
+            numerosParaMMC_MDC = numerosOriginais;
         }
-        numerosParaMMC_MDC = numerosOriginais;
-        calculoMMCExecutado = true;
     } else {
-        (numerosParaMMC_MDC == '') ? '' : exibirMensagem(`MMC: ${mmc}`); // evitar bug caso a tecla MMC for clicada sem antes de qualquer operação
+        exibirMensagem(`MMC: ${mmc}`);
     }
+    calculoPrimoExecutado = false;
 }
 
 function calcularMDC() {
@@ -150,12 +158,18 @@ function calcularMDC() {
                     divisor++;
                 }
             }
+            calculoMDCExecutado = true;
             exibirMensagem(`MDC: ${mdc}`);
-            tecladoDisponivel = false;// quando esta função for executada, apenas os botões MMC, MDC, Primo e Limpa ficarão acessíveis para o usuário (evitar bugs)
+            tecladoDisponivel = false;
+            numerosParaMMC_MDC = numerosOriginais;
         }
+<<<<<<< HEAD
         numerosParaMMC_MDC = numerosOriginais;
         calculoMDCExecutado = true;
+=======
+>>>>>>> 20b18fc1728ce5e7cd2eb5303d9164a68bae2b0d
     } else {
-        (numerosParaMMC_MDC == '') ? '' : exibirMensagem(`MDC: ${mdc}`); // evitar bug caso a tecla MDC for clicada sem antes de qualquer operação
+        exibirMensagem(`MDC: ${mdc}`);
     }
+    calculoPrimoExecutado = false;
 }
