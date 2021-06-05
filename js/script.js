@@ -95,7 +95,7 @@ function inserirNumeros() {
             limparDisplay();
             document.getElementById('vetor').innerText = numerosParaMMC_MDC;
         }else{
-            exibirMensagem('valor inválido para MMC-MDC');
+            exibirMensagem('valor inválido MMC-MDC');
             displayEstahVazio = false;
         }
     }
