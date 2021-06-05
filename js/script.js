@@ -5,6 +5,7 @@ let numerosParaMMC_MDC = [],
     calculoMDCExecutado = false,
     tecladoDisponivel = true,
     displayEstahVazio = true,
+    calculoPrimoExecutado = false,
     mmc = 1,
     mdc = 1;
 
@@ -42,6 +43,7 @@ function captarValoresDoTeclado(valor) {
             document.querySelector('.display').innerHTML += valor;
         }
         displayEstahVazio = true;
+        calculoPrimoExecutado = false;
     }
 }
 
@@ -59,23 +61,28 @@ function calculoAritmetico() {
 }
 
 function verificaSeEhPrimo() {
-    let divisores = 0,
-        primo = '',
-        valordoDisplay = 0;
-    try {
-        valordoDisplay = parseInt(lerDados());
-    } catch (erro) {
-        alert('valor inválido!');
-    }
-    if (isNaN(valordoDisplay) == false) {
-        for (let i = 1; i <= valordoDisplay; i++) {
-            if (valordoDisplay % i == 0) {
-                divisores++;
-            }
+    if (calculoPrimoExecutado == false) {
+        let divisores = 0,
+            primo = '',
+            valordoDisplay = 0;
+        try {
+            valordoDisplay = parseInt(lerDados());
+        } catch (erro) {
+            alert('valor inválido!');
         }
-        (divisores == 2 ? primo = 'é primo' : primo = 'não é primo');
+        if (isNaN(valordoDisplay) == false) {
+            for (let i = 1; i <= valordoDisplay; i++) {
+                if (valordoDisplay % i == 0) {
+                    divisores++;
+                }
+            }
+            (divisores == 2 ? primo = 'é primo' : primo = 'não é primo');
+            exibirMensagem(valordoDisplay + " " + primo);
+            displayEstahVazio = false;
+            calculoPrimoExecutado = true;
+        }
+    } else {
         exibirMensagem(valordoDisplay + " " + primo);
-        displayEstahVazio = false;
     }
 }
 // inserir números no vetor
@@ -123,6 +130,7 @@ function calcularMMC() {
     } else {
         exibirMensagem(`MMC: ${mmc}`);
     }
+    calculoPrimoExecutado = false;
 }
 
 function calcularMDC() {
@@ -158,4 +166,5 @@ function calcularMDC() {
     } else {
         exibirMensagem(`MDC: ${mdc}`);
     }
+    calculoPrimoExecutado = false;
 }
