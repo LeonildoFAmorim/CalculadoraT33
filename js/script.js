@@ -163,11 +163,6 @@ function calcularMDC() {
             tecladoDisponivel = false;
             numerosParaMMC_MDC = numerosOriginais;
         }
-<<<<<<< HEAD
-        numerosParaMMC_MDC = numerosOriginais;
-        calculoMDCExecutado = true;
-=======
->>>>>>> 20b18fc1728ce5e7cd2eb5303d9164a68bae2b0d
     } else {
         exibirMensagem(`MDC: ${mdc}`);
     }
