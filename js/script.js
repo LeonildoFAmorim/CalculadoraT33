@@ -49,17 +49,15 @@ function captarValoresDoTeclado(valor) {
 
 function calculoAritmetico() {
     if (tecladoDisponivel == true) {
-        let resultado = '';
-        if (resultado = lerDados() != 'valor já inserido') { // caso não tenha esta mensagem no display 
-            try {
-                resultado = lerDados();
-            } catch (erro) {
-                alert('sentença inválida!');
-            }
-            (resultado != undefined) ? exibirMensagem(resultado) : '';
+        let valordoDisplay = '';
+        try {
+            valordoDisplay = lerDados();
+        } catch (erro) {
+            alert('sentença inválida!');
         }
+        (valordoDisplay != undefined) ? exibirMensagem(valordoDisplay) : '';
+        displayEstahVazio = false;
     }
-    displayEstahVazio = false;
 }
 
 function verificaSeEhPrimo() {
