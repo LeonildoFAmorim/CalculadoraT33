@@ -50,12 +50,14 @@ function captarValoresDoTeclado(valor) {
 function calculoAritmetico() {
     if (tecladoDisponivel == true) {
         let resultado = '';
-        try {
-            resultado = lerDados();
-        } catch (erro) {
-            alert('sentença inválida!');
+        if (resultado = lerDados() != 'valor já inserido') { // caso não tenha esta mensagem no display 
+            try {
+                resultado = lerDados();
+            } catch (erro) {
+                alert('sentença inválida!');
+            }
+            (resultado != undefined) ? exibirMensagem(resultado) : '';
         }
-        (resultado != undefined) ? exibirMensagem(resultado) : '';
     }
     displayEstahVazio = false;
 }
@@ -93,7 +95,7 @@ function inserirNumeros() {
         if (valorDigitado > 1 && isNaN(valorDigitado) == false) {
             for (let i = 0; i < numerosParaMMC_MDC.length; i++) {
                 if (valorDigitado == numerosParaMMC_MDC[i]) {
-                   numeroRepetido = true;
+                    numeroRepetido = true;
                 }
             }
             if (numeroRepetido == false) {
