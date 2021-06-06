@@ -55,7 +55,7 @@ function calculoAritmetico() {
         } catch (erro) {
             alert('sentença inválida!');
         }
-        (resultado != undefined) ? exibirMensagem(resultado): '';
+        (resultado != undefined) ? exibirMensagem(resultado) : '';
     }
     displayEstahVazio = false;
 }
@@ -87,19 +87,31 @@ function verificaSeEhPrimo() {
 }
 // inserir números no vetor
 function inserirNumeros() {
+    let numeroRepetido = false;
     if (tecladoDisponivel == true) {
         let valorDigitado = Math.abs(parseInt(document.getElementById('display').innerHTML)); // números decimais serão considerado apenas a parte inteira. Números negativos serão convertidos para positivos.
         if (valorDigitado > 1 && isNaN(valorDigitado) == false) {
-            numerosParaMMC_MDC.push(valorDigitado);
-            numerosOriginais.push(valorDigitado);
-            limparDisplay();
-            document.getElementById('vetor').innerText = numerosParaMMC_MDC;
-        }else{
-            exibirMensagem('valor inválido MMC-MDC');
+            for (let i = 0; i < numerosParaMMC_MDC.length; i++) {
+                if (valorDigitado == numerosParaMMC_MDC[i]) {
+                   numeroRepetido = true;
+                }
+            }
+            if (numeroRepetido == false) {
+                numerosParaMMC_MDC.push(valorDigitado);
+                numerosOriginais.push(valorDigitado);
+                limparDisplay();
+                document.getElementById('vetor').innerText = numerosParaMMC_MDC;
+            } else {
+                exibirMensagem('valor já inserido');
+                displayEstahVazio = false;
+            }
+        } else {
+            exibirMensagem('valor inválido p/ MMC-MDC');
             displayEstahVazio = false;
         }
     }
 }
+
 // somar todos os valores de um vetor para calcular MMC
 function somarNumeros(vetor) {
     var somaValores = 0;
